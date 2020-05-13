@@ -50,7 +50,7 @@ Window::Window(int width, int height, const char* name)
 	wr.right = width + wr.left;
 	wr.top = 100;
 	wr.bottom = height + wr.top;
-	if (FAILED(AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE)))
+	if (AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE) == 0)
 	{
 		throw IVYWND_LAST_EXCEPT();
 	}
@@ -73,6 +73,14 @@ Window::Window(int width, int height, const char* name)
 Window::~Window()
 {
 	DestroyWindow(hWnd);
+}
+
+void Window::SetTitle(const std::string& title)
+{
+	if (SetWindowText(hWnd, title.c_str()) == 0)
+	{
+		throw IVYWND_LAST_EXCEPT();
+	}
 }
 
 LRESULT WINAPI Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
@@ -132,7 +140,7 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 	// Mouse Messages
 	case WM_MOUSEMOVE:
 	{
-		POINTS pt = MAKEPOINTS(lParam);
+		const POINTS pt = MAKEPOINTS(lParam);
 		mouse.OnMouseMove(pt.x, pt.y);
 		break;
 	}
