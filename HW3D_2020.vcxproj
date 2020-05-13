@@ -156,8 +156,15 @@
   <ItemGroup>
     <ClInclude Include="IvyException.h" />
     <ClInclude Include="IvyWin.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowsMessageMap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="HW3D_2020.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="witcher3-101-1024.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
