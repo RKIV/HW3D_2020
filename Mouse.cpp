@@ -50,7 +50,7 @@ void Mouse::Flush() noexcept
 	buffer = std::queue<Event>();
 }
 
-void Mouse::OnMouseMove(int _x, int _y)
+void Mouse::OnMouseMove(int _x, int _y) noexcept
 {
 	x = _x;
 	y = _y;

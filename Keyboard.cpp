@@ -93,10 +93,15 @@ void Keyboard::OnChar(char character) noexcept
 	keystates.reset();
 }
 
+void Keyboard::ClearState() noexcept
+{
+	keystates.reset();
+}
+
 template<typename T>
 void Keyboard::TrimBuffer(std::queue<T>& buffer) noexcept
 {
-	while (buffer.sizeIO > bufferSize)
+	while (buffer.size() > bufferSize)
 	{
 		buffer.pop();
 	}

@@ -91,7 +91,7 @@ public:
 	}
 	void Flush() noexcept;
 private:
-	void OnMouseMove(int x, int y) noexcept;
+	void OnMouseMove(int _x, int _y) noexcept;
 	void OnMouseLeave() noexcept;
 	void OnMouseEnter() noexcept;
 	void OnLeftPressed(int x, int y) noexcept;

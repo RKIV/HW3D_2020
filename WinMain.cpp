@@ -1,11 +1,8 @@
 #include "IvyWin.h"
-#include "Window.h"
-#include "WindowsMessageMap.h"
+#include "App.h"
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	static WindowsMessageMap mm;
-	OutputDebugString(mm(msg, lParam, wParam).c_str());
 
 
 	switch (msg)
@@ -26,20 +23,7 @@ int CALLBACK WinMain(
 {
 	try
 	{
-		Window wnd(800, 300, "Window Name");
-
-		// message pump
-		MSG msg;
-		BOOL gResult;
-		while ((gResult = GetMessage(&msg, nullptr, 0, 0)) > 0)
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-
-		}
-
-		if (gResult == -1) return -1;
-		return msg.wParam;
+		return App{}.Go();
 	}
 	catch (const IvyException& e)
 	{
