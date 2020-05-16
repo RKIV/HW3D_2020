@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IvyException.cpp" />
     <ClCompile Include="IvyTimer.cpp" />
     <ClCompile Include="Keyboard.cpp" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="IvyException.h" />
     <ClInclude Include="IvyTimer.h" />
     <ClInclude Include="IvyWin.h" />
