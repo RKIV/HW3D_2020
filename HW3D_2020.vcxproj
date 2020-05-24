@@ -176,6 +176,7 @@
     <ResourceCompile Include="HW3D_2020.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="FirstTriangle.JPG" />
     <Image Include="witcher3-101-1024.ico" />
   </ItemGroup>
   <ItemGroup>

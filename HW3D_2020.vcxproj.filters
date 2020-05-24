@@ -16,6 +16,9 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{986c8f11-71e7-4ccd-be64-0a1d491e809f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Examples">
+      <UniqueIdentifier>{84153917-38c1-4766-8310-3f3e51c29eaa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -92,6 +95,9 @@
   <ItemGroup>
     <Image Include="witcher3-101-1024.ico">
       <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="FirstTriangle.JPG">
+      <Filter>Examples</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
