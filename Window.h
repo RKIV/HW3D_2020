@@ -75,7 +75,3 @@ private:
 	HWND hWnd;
 	std::unique_ptr<Graphics> pGfx;
 };
-
-#define IVYWND_EXCEPT( hr ) Window::HrExcpetion(__LINE__, __FILE__, hr)
-#define IVYWND_LAST_EXCEPT() Window::HrException(__LINE__, __FILE__, GetLastError())
-#define IVYWND_NOGFX_EXCEPT() Window::NoGfxException(__LINE__, __FILE__);
