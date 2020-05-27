@@ -99,7 +99,7 @@
     <Image Include="FirstTriangle.JPG">
       <Filter>Examples</Filter>
     </Image>
-    <Image Include="..\..\..\Documents\ShareX\Screenshots\2020-05\DepthBuffer.gif">
+    <Image Include="DepthBuffer.gif">
       <Filter>Examples</Filter>
     </Image>
   </ItemGroup>
