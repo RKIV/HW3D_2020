@@ -183,6 +183,9 @@
     <Image Include="DepthBuffer.gif">
       <Filter>Examples</Filter>
     </Image>
+    <Image Include="LotsOCubes.gif">
+      <Filter>Examples</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

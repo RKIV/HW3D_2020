@@ -202,6 +202,7 @@
   <ItemGroup>
     <Image Include="DepthBuffer.gif" />
     <Image Include="FirstTriangle.JPG" />
+    <Image Include="LotsOCubes.gif" />
     <Image Include="witcher3-101-1024.ico" />
   </ItemGroup>
   <ItemGroup>
