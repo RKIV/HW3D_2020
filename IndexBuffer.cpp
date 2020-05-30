@@ -20,7 +20,7 @@ IndexBuffer::IndexBuffer(Graphics& gfx, const std::vector<unsigned short>& indic
 	ibsd.pSysMem = indices.data();
 
 
-	GetDevice(gfx)->CreateBuffer(&ibd, &ibsd, &pIndexBuffer);
+	GFX_THROW_INFO(GetDevice(gfx)->CreateBuffer(&ibd, &ibsd, &pIndexBuffer));
 }
 
 void IndexBuffer::Bind(Graphics& gfx) noexcept

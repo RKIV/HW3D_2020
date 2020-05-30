@@ -20,87 +20,94 @@ Box::Box(Graphics& gfx, std::mt19937& rng,
 	theta(adist(rng)),
 	phi(adist(rng))
 {
-
-	// Binding Vertex Buffer
-	struct Vertex
+	if (!IsStaticInitialized())
 	{
-		struct
+		// Binding Vertex Buffer
+		struct Vertex
 		{
-			float x;
-			float y;
-			float z;
-		} pos;
-	};
-	const std::vector<Vertex> vertices =
-	{
-		{ -1.0f,-1.0f,-1.0f },
-		{ 1.0f,-1.0f,-1.0f },
-		{ -1.0f,1.0f,-1.0f },
-		{ 1.0f,1.0f,-1.0f },
-		{ -1.0f,-1.0f,1.0f },
-		{ 1.0f,-1.0f,1.0f },
-		{ -1.0f,1.0f,1.0f },
-		{ 1.0f,1.0f,1.0f },
-	};
-	AddBind(std::make_unique<VertexBuffer>(gfx, vertices));
-
-
-	// Binding Vertex shader and saving refernce to vertex shader bytecode for input layout bind
-	auto pvs = std::make_unique<VertexShader>(gfx, L"VertexShader.cso");
-	auto pvsbc = pvs->GetBytecode();
-	AddBind(std::move(pvs));
-
-	// Binding Pixel Shader
-	AddBind(std::make_unique<PixelShader>(gfx, L"PixelShader.cso"));
-
-	// Binding Index List Buffer
-	const std::vector<unsigned short> indices =
-	{
-		0,2,1, 2,3,1,
-		1,3,5, 3,7,5,
-		2,6,3, 3,6,7,
-		4,5,7, 4,7,6,
-		0,4,2, 2,4,6,
-		0,1,4, 1,5,4
-	};
-
-	AddIndexBuffer(std::make_unique<IndexBuffer>(gfx, indices));
-	
-	
-	// Binding Color reference constant buffer
-	struct ConstantBuffer
-	{
-		struct
+			struct
+			{
+				float x;
+				float y;
+				float z;
+			} pos;
+		};
+		const std::vector<Vertex> vertices =
 		{
-			float r;
-			float g;
-			float b;
-			float a;
-		} face_colors[6];
-	};
-	
-	const ConstantBuffer cb =
-	{
+			{ -1.0f,-1.0f,-1.0f },
+			{ 1.0f,-1.0f,-1.0f },
+			{ -1.0f,1.0f,-1.0f },
+			{ 1.0f,1.0f,-1.0f },
+			{ -1.0f,-1.0f,1.0f },
+			{ 1.0f,-1.0f,1.0f },
+			{ -1.0f,1.0f,1.0f },
+			{ 1.0f,1.0f,1.0f },
+		};
+		AddStaticBind(std::make_unique<VertexBuffer>(gfx, vertices));
+
+
+		// Binding Vertex shader and saving refernce to vertex shader bytecode for input layout bind
+		auto pvs = std::make_unique<VertexShader>(gfx, L"VertexShader.cso");
+		auto pvsbc = pvs->GetBytecode();
+		AddStaticBind(std::move(pvs));
+
+		// Binding Pixel Shader
+		AddBind(std::make_unique<PixelShader>(gfx, L"PixelShader.cso"));
+
+		// Binding Index List Buffer
+		const std::vector<unsigned short> indices =
 		{
-			{ 1.0f, 0.0f, 1.0f },
-			{ 1.0f, 0.0f, 0.0f },
-			{ 0.0f, 1.0f, 0.0f },
-			{ 0.0f, 0.0f, 1.0f },
-			{ 1.0f, 1.0f, 0.0f },
-			{ 0.0f, 1.0f, 1.0f },
-		}
-	};
-	AddBind(std::make_unique<PixelConstantBuffer<ConstantBuffer>>(gfx, cb));
+			0,2,1, 2,3,1,
+			1,3,5, 3,7,5,
+			2,6,3, 3,6,7,
+			4,5,7, 4,7,6,
+			0,4,2, 2,4,6,
+			0,1,4, 1,5,4
+		};
 
-	// Binding input layout for vertices
-	const std::vector<D3D11_INPUT_ELEMENT_DESC> ied =
+		AddStaticIndexBuffer(std::make_unique<IndexBuffer>(gfx, indices));
+
+
+		// Binding Color reference constant buffer
+		struct ConstantBuffer
+		{
+			struct
+			{
+				float r;
+				float g;
+				float b;
+				float a;
+			} face_colors[6];
+		};
+
+		const ConstantBuffer cb =
+		{
+			{
+				{ 1.0f, 0.0f, 1.0f },
+				{ 1.0f, 0.0f, 0.0f },
+				{ 0.0f, 1.0f, 0.0f },
+				{ 0.0f, 0.0f, 1.0f },
+				{ 1.0f, 1.0f, 0.0f },
+				{ 0.0f, 1.0f, 1.0f },
+			}
+		};
+		AddStaticBind(std::make_unique<PixelConstantBuffer<ConstantBuffer>>(gfx, cb));
+
+		// Binding input layout for vertices
+		const std::vector<D3D11_INPUT_ELEMENT_DESC> ied =
+		{
+			{"Position", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0}
+		};
+		AddStaticBind(std::make_unique<InputLayout>(gfx, ied, pvsbc));
+
+		// Binding Primitive type
+		AddStaticBind(std::make_unique<Topology>(gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
+	}
+	else
 	{
-		{"Position", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0}
-	};
-	AddBind(std::make_unique<InputLayout>(gfx, ied, pvsbc));
-
-	// Binding Primitive type
-	AddBind(std::make_unique<Topology>(gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
+		SetIndexFromStatic();
+	}
+	
 
 	// Binding transform / projection matrix constant buffer
 	AddBind(std::make_unique<TransformCbuf>(gfx, *this));
