@@ -12,7 +12,7 @@ public:
 	{
 		namespace dx = DirectX;
 		assert(latDiv >= 3);
-		assert(longDiv > = 3);
+		assert(longDiv >= 3);
 
 		constexpr float radius = 1.0f;
 		const auto base = dx::XMVectorSet(0.0f, 0.0f, radius, 0.0f);

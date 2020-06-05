@@ -28,6 +28,9 @@
     <Filter Include="Header Files\Drawable">
       <UniqueIdentifier>{7858b82f-fe72-4506-a634-56641445cd88}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Primitives">
+      <UniqueIdentifier>{36870f58-15a2-4cd7-8117-0adc911e0cd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -88,6 +91,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bindable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pyramid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Melon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,25 +179,31 @@
     <ClInclude Include="DrawableBase.h">
       <Filter>Header Files\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="IndexedTriangleList.h">
-      <Filter>Header Files\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Header Files\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="Plane.h">
-      <Filter>Header Files\Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="IvyMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sphere.h">
+    <ClInclude Include="Pyramid.h">
       <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Header Files\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="Prism.h">
-      <Filter>Header Files\Drawable</Filter>
+      <Filter>Header Files\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Header Files\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexedTriangleList.h">
+      <Filter>Header Files\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Header Files\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="Cone.h">
+      <Filter>Header Files\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Melon.h">
       <Filter>Header Files\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
@@ -212,10 +227,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="VertexShader.hlsl">
+    <FxCompile Include="ColorIndexPS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PixelShader.hlsl">
+    <FxCompile Include="ColorIndexVS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="ColorBlendPS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="ColorBlendVS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
