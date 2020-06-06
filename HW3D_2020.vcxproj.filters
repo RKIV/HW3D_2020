@@ -16,9 +16,6 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{986c8f11-71e7-4ccd-be64-0a1d491e809f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Examples">
-      <UniqueIdentifier>{84153917-38c1-4766-8310-3f3e51c29eaa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Macros">
       <UniqueIdentifier>{2d6882bf-955d-4b1b-823a-a6fe24904299}</UniqueIdentifier>
     </Filter>
@@ -97,6 +94,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Melon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GDIPlusManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -206,6 +209,12 @@
     <ClInclude Include="Melon.h">
       <Filter>Header Files\Drawable</Filter>
     </ClInclude>
+    <ClInclude Include="GDIPlusManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Surface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HW3D_2020.rc">
@@ -215,15 +224,6 @@
   <ItemGroup>
     <Image Include="witcher3-101-1024.ico">
       <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="FirstTriangle.JPG">
-      <Filter>Examples</Filter>
-    </Image>
-    <Image Include="DepthBuffer.gif">
-      <Filter>Examples</Filter>
-    </Image>
-    <Image Include="LotsOCubes.gif">
-      <Filter>Examples</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
