@@ -119,7 +119,6 @@ void Graphics::EndFrame()
 		else
 			throw GFX_EXCEPT(hr);
 	}
-	pSwap->Present(1u, 0u);
 }
 
 void Graphics::ClearBuffer(float red, float green, float blue) noexcept

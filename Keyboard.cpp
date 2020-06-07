@@ -90,7 +90,8 @@ void Keyboard::OnKeyReleased(unsigned char keycode) noexcept
 
 void Keyboard::OnChar(char character) noexcept
 {
-	keystates.reset();
+	charbuffer.push(character);
+	TrimBuffer(charbuffer);
 }
 
 void Keyboard::ClearState() noexcept
