@@ -1,5 +1,7 @@
 # HW3D_2020
 ## A record of my progress in reverse chronological order
+### Scene of new primitive types and shaders including texturing
+![PrimitivesAndTexturing](Examples/PrimitivesAndTexturing.gif)
 ### Test Scene after Architecture Rework
 ![LotsO'Cubes](Examples/LotsOCubes.gif)
 ### First 3D scene with two cubes and a simple depth stencil to allow oclusion
