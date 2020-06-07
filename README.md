@@ -5,6 +5,7 @@
 ### Test Scene after Architecture Rework
 ![LotsO'Cubes](Examples/LotsOCubes.gif)
 ### First 3D scene with two cubes and a simple depth stencil to allow oclusion
+(relative position of cubes controlled with mouse movement)
 ![DepthBufferAndCubes](Examples/DepthBuffer.gif)
 ### First window and triangle render with simple Vertex and Pixel Shaders
 ![FirstTriangle](Examples/FirstTriangle.JPG)
