@@ -67,15 +67,7 @@ App::App()
 
 void App::DoFrame()
 {
-	const auto dt = timer.Mark();
-	if (wnd.kbd.KeyIsPressed('F'))
-	{
-		wnd.Gfx().DisableImgui();
-	}
-	else
-	{
-		wnd.Gfx().EnableImgui();
-	}
+	const auto dt = timer.Mark() * speed_factor;
 	wnd.Gfx().BeginFrame(0.07f, 0.0f, 0.12f);
 
 	for (auto& d : drawables)
@@ -84,10 +76,15 @@ void App::DoFrame()
 		d->Draw(wnd.Gfx());
 	}
 
-	if (show_demo_window && wnd.Gfx().IsImguiEnabled())
+	static char buffer[1024];
+
+	if (ImGui::Begin("Simulation Speed"))
 	{
-		ImGui::ShowDemoWindow(&show_demo_window);
+		ImGui::SliderFloat("Speed Factor", &speed_factor, 0.0f, 4.0f);
+		ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+		ImGui::Text("Status: %s", wnd.kbd.KeyIsPressed(VK_SPACE) ? "PAUSED" : "RUNNING");
 	}
+	ImGui::End();
 
 	wnd.Gfx().EndFrame();
 }
