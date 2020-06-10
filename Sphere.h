@@ -2,7 +2,7 @@
 
 #include "IndexedTriangleList.h"
 #include <DirectXMath.h>
-#include "IvyMath.h""
+#include "IvyMath.h"
 
 class Sphere
 {

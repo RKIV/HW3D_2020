@@ -29,54 +29,30 @@ Box::Box(Graphics& gfx, std::mt19937& rng,
 		struct Vertex
 		{
 			dx::XMFLOAT3 pos;
+			dx::XMFLOAT3 n;
 		};
-		auto model = Cube::Make<Vertex>();
+		IndexedTriangleList<Vertex> model = Cube::MakeIndependent<Vertex>();
+		model.SetNormalsIndependentFlat();
+
 		AddStaticBind(std::make_unique<VertexBuffer>(gfx, model.vertices));
 
 
 		// Binding Vertex shader and saving refernce to vertex shader bytecode for input layout bind
-		auto pvs = std::make_unique<VertexShader>(gfx, L"ColorIndexVS.cso");
+		auto pvs = std::make_unique<VertexShader>(gfx, L"PhongVS.cso");
 		auto pvsbc = pvs->GetBytecode();
 		AddStaticBind(std::move(pvs));
 
 		// Binding Pixel Shader
-		AddStaticBind(std::make_unique<PixelShader>(gfx, L"ColorIndexPS.cso"));
+		AddStaticBind(std::make_unique<PixelShader>(gfx, L"PhongPS.cso"));
 
 		// Binding Index List Buffer
 		AddStaticIndexBuffer(std::make_unique<IndexBuffer>(gfx, model.indices));
 
-
-		// Binding Color reference constant buffer
-		struct PixelShaderConstants
-		{
-			struct
-			{
-				float r;
-				float g;
-				float b;
-				float a;
-			} face_colors[8];
-		};
-
-		const PixelShaderConstants cb =
-		{
-			{
-				{ 1.0f, 1.0f, 1.0f },
-				{ 1.0f, 0.0f, 0.0f },
-				{ 0.0f, 1.0f, 0.0f },
-				{ 1.0f, 1.0f, 0.0f },
-				{ 0.0f, 0.0f, 1.0f },
-				{ 1.0f, 0.0f, 1.0f },
-				{ 0.0f, 1.0f, 1.0f },
-				{ 0.0f, 0.0f, 0.0f },
-			}
-		};
-		AddStaticBind(std::make_unique<PixelConstantBuffer<PixelShaderConstants>>(gfx, cb));
-
 		// Binding input layout for vertices
 		const std::vector<D3D11_INPUT_ELEMENT_DESC> ied =
 		{
-			{"Position", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0}
+			{"Position", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+			{"Normal", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0}
 		};
 		AddStaticBind(std::make_unique<InputLayout>(gfx, ied, pvsbc));
 
