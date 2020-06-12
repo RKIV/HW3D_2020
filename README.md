@@ -1,5 +1,7 @@
 # HW3D_2020
 ## A record of my progress in reverse chronological order
+### Adding dynamic point lighting
+![DynamicPointLight](Examples/DynamicPointLight.gif)
 ### Implementing Camera transform matrix and Imgui controls
 ![ImguiCamera](Examples/ImguiCamera.gif)
 ### Scene of new primitive types and shaders including texturing
