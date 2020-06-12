@@ -8,7 +8,8 @@ Box::Box(Graphics& gfx, std::mt19937& rng,
 	std::uniform_real_distribution<float>& ddist, 
 	std::uniform_real_distribution<float>& odist, 
 	std::uniform_real_distribution<float>& rdist,
-	std::uniform_real_distribution<float>& bdist)
+	std::uniform_real_distribution<float>& bdist,
+	DirectX::XMFLOAT3 material)
 	:
 	r(rdist(rng)),
 	droll(ddist(rng)),
@@ -67,6 +68,14 @@ Box::Box(Graphics& gfx, std::mt19937& rng,
 
 	// Binding transform / projection matrix constant buffer
 	AddBind(std::make_unique<TransformCbuf>(gfx, *this));
+
+	struct PSMaterialConstant
+	{
+		dx::XMFLOAT3 color;
+		float padding;
+	} colorConst;
+	colorConst.color = material;
+	AddBind(std::make_unique<PixelConstantBuffer<PSMaterialConstant>>(gfx, colorConst, 1u));
 
 	// model deformation transform (poer instance, not stored as bind)
 	dx::XMStoreFloat3x3(
