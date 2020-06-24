@@ -33,6 +33,4 @@ float4 main(float3 worldPos : Position, float3 n : Normal, float3 color : Color)
 	const float3 specular = att * (diffuseColor * diffuseIntensity) * specularIntensity * pow(max(0.0f, dot(normalize(-r), normalize(worldPos))), specularPower);
 	// final color
 	return float4(saturate((diffuse + ambient + specular) * color), 1.0f);
-
-	return float4(1.0f, 1.0f, 1.0f, 1.0f);
 }
